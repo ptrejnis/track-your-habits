@@ -1,4 +1,4 @@
-import { NextComponentType } from "next";
+import type { NextComponentType } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Main: NextComponentType = () => {
@@ -24,10 +24,10 @@ const AuthSession: NextComponentType = () => {
       {session ? (
         <>
           <p>hi {session.user?.name}</p>
-          <button onClick={() => signOut()}>Logout</button>
+          <button onClick={async () => await signOut()}>Logout</button>
         </>
       ) : (
-        <button onClick={() => signIn("discord")}>Login with Discord</button>
+        <button onClick={async () => await signIn("discord")}>Login with Discord</button>
       )}
     </div>
   );
